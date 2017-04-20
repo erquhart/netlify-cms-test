@@ -1,9 +1,6 @@
+---
+title: asdfasdfasd
+date: 2017-04-20T19:32:12.183Z
+---
 
-      ---
-      title: wfgsdfgsdfgdf
-date: 2017-04-19T14:11:59-04:00
-
-      ---
-      
 sdfgsdfgsdfgsdfsdfgsdfgsd
-    
