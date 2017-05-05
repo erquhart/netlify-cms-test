@@ -4,6 +4,21 @@ backend:
   site_domain: netlify-cms-test-site.netlify.com
 collections:
   - card:
+      text: title
+      type: alltype
+    create: true
+    fields:
+      - label: Question
+        name: title
+        tagname: h1
+        widget: string
+      - label: Answer
+        name: body
+        widget: markdown
+    folder: _faqs
+    label: FAQ
+    name: faq
+  - card:
       image: image
       text: title
       type: image
@@ -33,21 +48,6 @@ collections:
         widget: text
     name: posts
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
-  - card:
-      text: title
-      type: alltype
-    create: true
-    fields:
-      - label: Question
-        name: title
-        tagname: h1
-        widget: string
-      - label: Answer
-        name: body
-        widget: markdown
-    folder: _faqs
-    label: FAQ
-    name: faq
   - editor:
       preview: false
     files:
