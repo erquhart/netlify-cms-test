@@ -2,52 +2,80 @@ backend:
   name: github
   repo: erquhart/netlify-cms-test
   site_domain: netlify-cms-test-site.netlify.com
-
-media_folder: "assets/uploads"
-
-collections: # A list of collections the CMS should be able to edit
-  - name: "posts" # Used in routes, ie.: /admin/collections/:slug/edit
-    label: "Post" # Used in the UI, ie.: "New Post"
-    folder: "_posts"
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    create: true # Allow users to create new documents in this collection
-    fields: # The fields each document in this collection have
-      - {label: "Title", name: "title", widget: "string", tagname: "h1"}
-      - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD hh:mma"}
-      - {label: "Cover Image", name: "image", widget: "image", required: false, tagname: ""}
-      - {label: "Body", name: "body", widget: "markdown"}
+collections:
+  - card:
+      image: image
+      text: title
+      type: image
+    create: true
+    fields:
+      - label: Title
+        name: title
+        tagname: h1
+        widget: string
+      - format: 'YYYY-MM-DD hh:mma'
+        label: Publish Date
+        name: date
+        widget: datetime
+      - label: Cover Image
+        name: image
+        required: false
+        tagname: ''
+        widget: image
+      - label: Body
+        name: body
+        widget: markdown
+    folder: _posts
+    label: Post Has CHANGED
     meta:
-      - {label: "SEO Description", name: "description", widget: "text"}
-    card: {type: "image", image: "image", text: "title"}
-
-  - name: "faq" # Used in routes, ie.: /admin/collections/:slug/edit
-    label: "FAQ" # Used in the UI, ie.: "New Post"
-    folder: "_faqs"
-    create: true # Allow users to create new documents in this collection
-    fields: # The fields each document in this collection have
-      - {label: "Question", name: "title", widget: "string", tagname: "h1"}
-      - {label: "Answer", name: "body", widget: "markdown"}
-    card: {type: "alltype", text: "title"}
-
-  - name: "settings"
-    label: "Settings"
-    editor:
+      - label: SEO Description
+        name: description
+        widget: text
+    name: posts
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+  - card:
+      text: title
+      type: alltype
+    create: true
+    fields:
+      - label: Question
+        name: title
+        tagname: h1
+        widget: string
+      - label: Answer
+        name: body
+        widget: markdown
+    folder: _faqs
+    label: FAQ
+    name: faq
+  - editor:
       preview: false
     files:
-      - name: "config"
-        label: "Configuration"
-        file: "config.yml"
-        description: "CMS Configuration"
+      - description: CMS Configuration
         fields:
-          - name: backend
+          - fields:
+              - label: Name
+                name: name
+                widget: string
+              - label: Repo
+                name: repo
+                widget: string
             label: Backend
+            name: backend
             widget: object
-            fields:
-              - {label: "Name", name: "name", widget: "string"}
-              - {label: "Repo", name: "repo", widget: "string"}
-          - name: collections
+          - fields:
+              - label: Name
+                name: name
+                widget: string
+              - label: Label
+                name: label
+                widget: string
             label: Collections
+            name: collections
             widget: list
-            fields:
-              - {label: "Name", name: "name", widget: "string"}
-              - {label: "Label", name: "label", widget: "string"}
+        file: config.yml
+        label: Configuration
+        name: config
+    label: Settings
+    name: settings
+media_folder: assets/uploads
